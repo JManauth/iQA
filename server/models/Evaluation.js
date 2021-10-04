@@ -14,7 +14,7 @@ const evaluationSchema = new Schema(
         agentName: [
             {
                 type: Schema.Types.ObjectId,
-                ref: 'Agent',
+                ref: 'User',
                 required: true,
             }
         ],
@@ -22,14 +22,16 @@ const evaluationSchema = new Schema(
         author: [
             {
                 type: Schema.Types.ObjectId,
-                ref: 'Qa',
+                ref: 'User',
+                required: true,
             }
         ],
 
         teamleadName: [
             {
                 type: Schema.Types.ObjectId,
-                ref: 'Teamlead',
+                ref: 'User',
+                required: true,
             }
         ],
 
@@ -84,6 +86,12 @@ const evaluationSchema = new Schema(
             required: true,
             trim: true,
         },
+        finalScore: {
+            type: Number,
+            required: true,
+            min: 0,
+            max: 5,
+        }
 
     },
     {

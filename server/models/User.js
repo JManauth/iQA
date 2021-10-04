@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 
 
 
-const teamleadSchema = new Schema(
+const userSchema = new Schema(
     {
         username: {
             type: String,
@@ -15,10 +15,14 @@ const teamleadSchema = new Schema(
             required: true,
             unique: true,
         },
-        lastName: {
+        lastName:{
             type: String,
             required: true,
             unique: true,
+        },
+        userType: {
+            type: String,
+            required:true,
         },
         email: {
             type: String,
@@ -30,15 +34,24 @@ const teamleadSchema = new Schema(
             type: String,
             required: true,
         },
+
+        teamLead: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'User',
+            },
+        ],
     },
     {
         toJSON: {
             virtuals: true,
         },
-    },
+    }
 );
 
-teamleadSchema.pre('save', async function (next) {
+//hash user password
+
+userSchema.pre('save', async function (next) {
     if (this.isNew || this.isModified('password')) {
         const saltRounds = 10;
         this.password = await bcrypt.hash(this.password, saltRounds);
@@ -47,10 +60,16 @@ teamleadSchema.pre('save', async function (next) {
     next();
 });
 
-teamleadSchema.methods.isCorrectPassword = async function (password) {
+// custom method to compare and validate password for logging in
+userSchema.methods.isCorrectPassword = async function (password) {
     return bcrypt.compare(password, this.password);
 };
 
-const Teamlead = model('Teamlead', teamleadSchema);
+// use this code to query amount of teamm mates / evaluations
+// userSchema.virtual('bookCount').get(function () {
+//     return this.savedBooks.length;
+// });
 
-module.exports = Teamlead;
+const User = model('User', userSchema);
+
+module.exports = User;

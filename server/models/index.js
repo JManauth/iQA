@@ -1,6 +1,5 @@
-const Agent = require('./Agent');
+const User = require('./User');
 const Evaluation = require('./Evaluation');
-const Teamlead = require('./Teamlead');
-const Qa = require('./Qa');
 
-module.exports = { Agent, Evaluation, Teamlead, Qa };
+
+module.exports = { User, Evaluation };

@@ -3,9 +3,7 @@ const { User, Evaluation } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
-    Query:{
-        
-    },
+    
 
     Mutation: {
         addUser: async (parent, { username, email, password }) => {

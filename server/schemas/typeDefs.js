@@ -12,16 +12,16 @@ const typeDefs = gql`
         userType: String
         email: String
         password: String
-        teamLead: [Teamlead]
+        teamLead: [User]
     }
 
 
     type Evaluation {
         _id: ID
         title: String
-        AgentName: [Agent]!
-        author: [Qa]!
-        teamleadName: [Teamlead]!
+        AgentName: [User]!
+        author: [User]!
+        teamleadName: [User]!
         createdAt: String
         empathyAndPassion: Boolean
         empathyAndPassionFeedback: String
@@ -40,6 +40,10 @@ const typeDefs = gql`
         token: ID!
         user: User
       }
+
+    type Mutation {
+        addUser(username: String!, firstName: String!, lastName: String!, userType; String!, email: String!, password: String!, teamLead: String!): Auth
+    }
 `;
 
 module.exports = typeDefs;

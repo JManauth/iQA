@@ -1,7 +1,7 @@
 import React from 'react';
 import{
   ApolloClient,
-  inMemoryCache,
+  InMemoryCache,
   ApolloProvider,
   createHttpLink,
 } from '@apollo/client';
@@ -38,16 +38,18 @@ const client = new ApolloClient({
 
 function App() {
   return (
+    <ApolloProvider client={client} >
     <Router>
       <Switch>
         <Route path='/' exact>
-          <MainPage />
+          <SecondPage />
         </Route>
-        <Route exact path='/secondpage'>
+        <Route exact path='/signup'>
           <SignUp />
         </Route>
       </Switch>
     </Router>
+    </ApolloProvider>
 
   );
 }

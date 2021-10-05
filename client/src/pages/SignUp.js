@@ -16,6 +16,7 @@ const SignUp = () => {
         userType:'',
         email:'',
         password:'',
+        teamLead: '',
     });
     const [addUser, { error, data }] = useMutation(ADD_USER);
 
@@ -61,7 +62,31 @@ const SignUp = () => {
                       placeholder="Your username"
                       name="username"
                       type="text"
-                      value={formState.name}
+                      value={formState.username}
+                      onChange={handleChange}
+                    />
+                    <input
+                      className="form-input"
+                      placeholder="Your First Name"
+                      name="firstName"
+                      type="text"
+                      value={formState.firstName}
+                      onChange={handleChange}
+                    />
+                    <input
+                      className="form-input"
+                      placeholder="Your Last Name"
+                      name="lastName"
+                      type="text"
+                      value={formState.lastName}
+                      onChange={handleChange}
+                    />
+                    <input
+                      className="form-input"
+                      placeholder="Your User Type"
+                      name="userType"
+                      type="text"
+                      value={formState.userType}
                       onChange={handleChange}
                     />
                     <input
@@ -78,6 +103,14 @@ const SignUp = () => {
                       name="password"
                       type="password"
                       value={formState.password}
+                      onChange={handleChange}
+                    />
+                    <input
+                      className="form-input"
+                      placeholder="Your Team Lead"
+                      name="teamLead"
+                      type="text"
+                      value={formState.teamLead}
                       onChange={handleChange}
                     />
                     <button
